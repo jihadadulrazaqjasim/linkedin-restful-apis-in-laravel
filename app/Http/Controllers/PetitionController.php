@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PetitionCollection;
+use App\Http\Resources\PetitionResource;
 use App\Models\Petition;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,12 @@ class PetitionController extends Controller
      */
     public function index()
     {
-        //
+        // return PetitionResource::collection(Petition::all());
+        // OR
+        return new PetitionCollection(Petition::all());
+
+        // The difference between two is that with the PetitionCollection the additional metadata will be returned in this case
+        //version:0.1.1 and author:jihad abdulrazaq
     }
 
     /**
